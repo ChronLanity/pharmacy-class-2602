@@ -27,10 +27,10 @@ function getUser(req: VercelRequest) {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { method, query, body } = req;
-    const path = '/' + (Array.isArray(query.path) ? query.path.join('/') : (query.path as string) || '');
     
-    // Debug: log the received path and query
-    console.log('Received request:', { method, path, query, url: req.url });
+    // Vercel passes the catch-all route parameter as '[...path]' in query
+    const pathParam = query['[...path]'] || query.path;
+    const path = '/' + (Array.isArray(pathParam) ? pathParam.join('/') : (pathParam as string) || '');
     
     const user = getUser(req);
 
