@@ -3,5 +3,9 @@
   "env": {
     "SUPABASE_URL": "https://yeogmpkmztfhcehdfuua.supabase.co",
     "SUPABASE_ANON_KEY": "sb_publishable__vqqcw2ZJFOY0SFWfYEUzQ_Uc4VbZAG"
-  }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
