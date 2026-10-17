@@ -20,7 +20,7 @@ export default function Classmates() {
   useEffect(() => {
     const loadClassmates = async () => {
       try {
-        const data = await requestJson<{ classmates: Classmate[] }>('/functions/v1/app/classmates');
+        const data = await requestJson<{ classmates: Classmate[] }>('/api/app/classmates');
         setClassmates(data.classmates);
       } catch (err) {
         console.error('Failed to load classmates:', err);

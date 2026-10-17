@@ -35,7 +35,7 @@ export default function App() {
 
   const refreshUser = async () => {
     try {
-      const data = await requestJson<User | null>('/functions/v1/app/users');
+      const data = await requestJson<User | null>('/api/app/users');
       setUser(data);
     } catch {
       setUser(null);

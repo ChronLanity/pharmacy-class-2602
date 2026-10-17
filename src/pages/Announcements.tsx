@@ -26,7 +26,7 @@ export default function Announcements() {
 
   const loadAnnouncements = async () => {
     try {
-      const data = await requestJson<{ announcements: Announcement[] }>('/functions/v1/app/announcements');
+      const data = await requestJson<{ announcements: Announcement[] }>('/api/app/announcements');
       setAnnouncements(data.announcements);
     } catch (err) {
       console.error('Failed to load announcements:', err);
@@ -47,7 +47,7 @@ export default function Announcements() {
     }
 
     try {
-      await requestJson('/functions/v1/app/announcements', {
+      await requestJson('/api/app/announcements', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
       });
@@ -63,7 +63,7 @@ export default function Announcements() {
   const handleDelete = async (id: string) => {
     if (!confirm('确定要删除这条公告吗？')) return;
     try {
-      await requestJson('/functions/v1/app/announcements', {
+      await requestJson('/api/app/announcements', {
         method: 'DELETE',
         body: JSON.stringify({ id }),
       });

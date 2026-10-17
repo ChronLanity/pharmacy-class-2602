@@ -30,7 +30,7 @@ export default function Activities() {
 
   const loadActivities = async () => {
     try {
-      const data = await requestJson<{ activities: Activity[] }>('/functions/v1/app/activities');
+      const data = await requestJson<{ activities: Activity[] }>('/api/app/activities');
       setActivities(data.activities);
     } catch (err) {
       console.error('Failed to load activities:', err);
@@ -56,7 +56,7 @@ export default function Activities() {
         .map((url) => url.trim())
         .filter((url) => url.length > 0);
 
-      await requestJson('/functions/v1/app/activities', {
+      await requestJson('/api/app/activities', {
         method: 'POST',
         body: JSON.stringify({
           title,
@@ -79,7 +79,7 @@ export default function Activities() {
   const handleDelete = async (id: string) => {
     if (!confirm('确定要删除这条活动记录吗？')) return;
     try {
-      await requestJson('/functions/v1/app/activities', {
+      await requestJson('/api/app/activities', {
         method: 'DELETE',
         body: JSON.stringify({ id }),
       });

@@ -24,7 +24,7 @@ export default function Login() {
           setError('请填写姓名');
           return;
         }
-        await requestJson('/functions/v1/app/users', {
+        await requestJson('/api/app/users', {
           method: 'POST',
           body: JSON.stringify({
             name,

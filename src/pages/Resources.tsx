@@ -30,7 +30,7 @@ export default function Resources() {
 
   const loadResources = async () => {
     try {
-      const data = await requestJson<{ resources: Resource[] }>('/functions/v1/app/resources');
+      const data = await requestJson<{ resources: Resource[] }>('/api/app/resources');
       setResources(data.resources);
     } catch (err) {
       console.error('Failed to load resources:', err);
@@ -51,7 +51,7 @@ export default function Resources() {
     }
 
     try {
-      await requestJson('/functions/v1/app/resources', {
+      await requestJson('/api/app/resources', {
         method: 'POST',
         body: JSON.stringify({
           title,
@@ -74,7 +74,7 @@ export default function Resources() {
   const handleDelete = async (id: string) => {
     if (!confirm('确定要删除这个资源吗？')) return;
     try {
-      await requestJson('/functions/v1/app/resources', {
+      await requestJson('/api/app/resources', {
         method: 'DELETE',
         body: JSON.stringify({ id }),
       });
