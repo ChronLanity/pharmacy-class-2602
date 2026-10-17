@@ -7,12 +7,16 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "api/app/[[...path]].ts",
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/app/(.*)",
+      "destination": "/api/app/[[...path]]"
     },
     {
       "source": "/(.*)",
