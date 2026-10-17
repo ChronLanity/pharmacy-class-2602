@@ -27,8 +27,7 @@ function getUser(req: VercelRequest) {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { method, query, body } = req;
-    const path = (query.path as string) || '';
-    const action = query.action as string;
+    const path = '/' + (Array.isArray(query.path) ? query.path.join('/') : (query.path as string) || '');
     const user = getUser(req);
 
     // Get user profile to check role
