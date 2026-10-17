@@ -20,7 +20,7 @@ function getUser(req: VercelRequest) {
   
   return {
     user_id: userId,
-    name: userName || 'User',
+    name: userName ? decodeURIComponent(userName) : 'User',
   };
 }
 
