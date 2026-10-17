@@ -50,8 +50,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (method === 'POST' && path === '/users') {
         // Register new user
         const { name, student_id, invite_code } = body;
-        if (!name || !student_id) {
-          return res.status(400).json({ error: 'missing_fields' });
+        if (!name) {
+          return res.status(400).json({ error: 'missing_name' });
         }
 
         // Check invite code if not first user
@@ -74,7 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             id: userId,
             user_id: userAuthId,
             name,
-            student_id,
+            student_id: student_id || '',
             role,
             created_at: new Date().toISOString()
           })

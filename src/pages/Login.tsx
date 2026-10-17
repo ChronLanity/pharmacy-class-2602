@@ -9,7 +9,6 @@ export default function Login() {
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
   const [name, setName] = useState('');
-  const [studentId, setStudentId] = useState('');
   const [inviteCode, setInviteCode] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,15 +20,14 @@ export default function Login() {
 
     try {
       if (isRegister) {
-        if (!name || !studentId) {
-          setError('请填写完整信息');
+        if (!name) {
+          setError('请填写姓名');
           return;
         }
         await requestJson('/functions/v1/app/users', {
           method: 'POST',
           body: JSON.stringify({
             name,
-            student_id: studentId,
             invite_code: inviteCode,
           }),
         });
@@ -62,14 +60,6 @@ export default function Login() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="请输入您的姓名"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">学号</label>
-                  <Input
-                    value={studentId}
-                    onChange={(e) => setStudentId(e.target.value)}
-                    placeholder="请输入您的学号"
                   />
                 </div>
                 <div className="space-y-2">
