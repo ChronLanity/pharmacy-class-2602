@@ -1,19 +1,5 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/dist/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
-    }
-  ],
   "env": {
     "SUPABASE_URL": "https://yeogmpkmztfhcehdfuua.supabase.co",
     "SUPABASE_ANON_KEY": "sb_publishable__vqqcw2ZJFOY0SFWfYEUzQ_Uc4VbZAG"
