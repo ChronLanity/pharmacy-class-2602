@@ -1,10 +1,11 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
 import { Button } from './ui/button';
 
 export default function Layout() {
   const { user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { path: '/', label: '首页' },
@@ -13,6 +14,13 @@ export default function Layout() {
     { path: '/resources', label: '学习资料' },
     { path: '/classmates', label: '同学录' },
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('user_name');
+    navigate('/login');
+    window.location.reload();
+  };
 
   return (
     <div className="min-h-dvh bg-background">
@@ -41,6 +49,9 @@ export default function Layout() {
                 管理员
               </span>
             )}
+            <Button variant="ghost" size="sm" onClick={handleLogout}>
+              退出
+            </Button>
           </div>
         </div>
       </header>

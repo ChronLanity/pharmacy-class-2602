@@ -45,7 +45,13 @@ export default function App() {
   };
 
   useEffect(() => {
-    refreshUser();
+    // Check if user is already logged in via localStorage
+    const userId = localStorage.getItem('user_id');
+    if (userId) {
+      refreshUser();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   if (loading) {

@@ -1,10 +1,15 @@
 // API helper for backend calls
 export async function requestJson<T>(url: string, options?: RequestInit): Promise<T> {
+  const userId = localStorage.getItem('user_id');
+  const userName = localStorage.getItem('user_name');
+  
   const res = await fetch(url, {
     credentials: 'same-origin',
     ...options,
     headers: {
       'content-type': 'application/json',
+      'x-user-id': userId || '',
+      'x-user-name': userName || '',
       ...options?.headers,
     },
   });
