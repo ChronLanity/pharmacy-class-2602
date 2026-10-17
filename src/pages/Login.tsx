@@ -25,9 +25,15 @@ export default function Login() {
   useEffect(() => {
     // Fetch list of registered users for login selection
     if (!isRegister) {
-      requestJson<{ classmates: User[] }>('/api/app/classmates')
-        .then((data) => setUsers(data.classmates))
-        .catch(() => setUsers([]));
+      requestJson<{ classmates: User[] }>(`/api/app/classmates?t=${Date.now()}`)
+        .then((data) => {
+          console.log('Classmates data:', data);
+          setUsers(data.classmates);
+        })
+        .catch((err) => {
+          console.error('Failed to fetch classmates:', err);
+          setUsers([]);
+        });
     }
   }, [isRegister]);
 
